@@ -19,7 +19,10 @@ matrix:
   allow_failures:
     - rvm: ruby-head
 
+before_script:
+  - psql -c 'drop database api_session_recovering_test' -U postgres
+  - psql -c 'create database api_session_recovering_test' -U postgres
+
 script:
-  - bundle exec rake db:create RAILS_ENV=test
   - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rake spec
