@@ -1,0 +1,26 @@
+language: ruby
+
+rvm:
+  - 2.4.2
+
+env:
+  - DB=postgresql
+
+gemfile:
+  - gemfiles/rails_4.2.gemfile
+
+matrix:
+  allow_failures:
+
+before_install:
+  - gem update bundler
+  - sudo apt-get update
+
+before_script:
+  # - mysql -e 'create database api_session_recovering_app_test'
+  # - psql -c 'create database api_session_recovering_app_test' -U postgres
+
+script:
+  - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake spec

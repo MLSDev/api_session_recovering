@@ -1,0 +1,7 @@
+en:
+  api_session_recovering:
+    hi: "Hello!"
+    errors:
+      reset_password:
+        too_many_attempts: 'too many reset password attempts today'
+

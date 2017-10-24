@@ -1,0 +1,22 @@
+.bundle/
+.DS_Store
+
+# Keep this out - it will break Travis
+Gemfile.lock
+
+log/*.log
+pkg/
+tmp/**/*
+
+spec/dummy/tmp/**/*
+
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
+
+# It's important that when developing, you start from a fresh install
+spec/dummy/app/views/api_session_recovery/
+spec/dummy/config/initializers/api_session_recovery.rb
+spec/dummy/db/migrate/*api_session_recovery*
+spec/dummy/db/schema.rb
+
