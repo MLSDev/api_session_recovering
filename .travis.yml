@@ -7,8 +7,8 @@ rvm:
   - 2.4.2
   - ruby-head
 
-env:
-  - DB=postgresql
+# env:
+#   - DB=postgresql
 
 gemfile:
   - gemfiles/rails_4.2.gemfile
@@ -24,5 +24,5 @@ before_script:
   - psql -c 'create database api_session_recovering_app_test' -U postgres
 
 script:
-  - bundle exec rake db:migrate RAILS_ENV=test
+  - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rake spec
