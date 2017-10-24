@@ -20,7 +20,7 @@ matrix:
     - rvm: ruby-head
 
 before_script:
-  - psql -c 'drop database api_session_recovering_test' -U postgres
+  - psql -c 'drop database if exists api_session_recovering_test' -U postgres
   - psql -c 'create database api_session_recovering_test' -U postgres
 
 script:
