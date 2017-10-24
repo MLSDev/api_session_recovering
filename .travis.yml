@@ -4,11 +4,9 @@ sudo: false
 cache: bundler
 
 rvm:
+  - 2.3.0
   - 2.4.2
   - ruby-head
-
-# env:
-#   - DB=postgresql
 
 gemfile:
   - gemfiles/rails_5.0.gemfile
