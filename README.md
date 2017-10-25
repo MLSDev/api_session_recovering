@@ -2,6 +2,8 @@
 
 ApiSessionRecovering.
 
+Only Rails `~> 5` support.
+
 ## Installation
 
 Add these to your Gemfile
