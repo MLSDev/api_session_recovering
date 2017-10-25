@@ -19,6 +19,7 @@ matrix:
 before_script:
   - psql -c 'drop database if exists api_session_recovering_app_test' -U postgres
   - psql -c 'create database api_session_recovering_app_test' -U postgres
+  - gem install bundler --no-document
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate
