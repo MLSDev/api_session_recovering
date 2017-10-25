@@ -1,4 +1,4 @@
-class ApiSessionRecovering::BaseController < ApplicationController
+class ApiSessionRecovering::BaseController < ApiSessionRecovering::ApplicationController
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
   helper_method :resource, :collection
