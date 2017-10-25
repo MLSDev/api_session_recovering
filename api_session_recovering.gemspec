@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = ApiSessionRecovering::VERSION
   s.authors     = ['']
   s.email       = ['']
-  s.homepage    = 'http://github.com'
+  s.homepage    = 'https://github.com'
   s.summary     = 'A mountable api session recovering stuff'
   s.description = 'MLSdev'
 
