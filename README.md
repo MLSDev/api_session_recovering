@@ -1,3 +1,5 @@
+[![Test Coverage](https://api.codeclimate.com/v1/badges/febb3376c6586f609650/test_coverage)](https://codeclimate.com/github/DmytroStepaniuk/api_session_recovering/test_coverage)
+
 # ApiSessionRecovering
 
 ApiSessionRecovering.
