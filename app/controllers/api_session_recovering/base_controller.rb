@@ -1,6 +1,8 @@
 class ApiSessionRecovering::BaseController < ApiSessionRecovering::ApplicationController
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
+  attr_reader :build_resource, :resource
+
   helper_method :resource, :collection
 
   rescue_from ActionController::ParameterMissing do |exception|
