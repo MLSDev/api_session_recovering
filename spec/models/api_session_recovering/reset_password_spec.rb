@@ -14,6 +14,6 @@ describe ApiSessionRecovering::ResetPassword do
 
     before { subject.valid? }
 
-    it { expect(subject.errors[:base]).to eq([I18n.t('api_session_recovering.errors.reset_password.too_many_attempts')]) }
+    it { expect(subject.errors[:base]).to include(I18n.t('api_session_recovering.errors.reset_password.too_many_attempts')) }
   end
 end
