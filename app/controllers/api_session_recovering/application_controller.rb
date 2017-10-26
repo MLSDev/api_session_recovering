@@ -1,2 +1,2 @@
-class ApplicationController::ApiSessionRecovering < ::ApplicationController
+class ApiSessionRecovering::ApplicationController < ::ApplicationController
 end
