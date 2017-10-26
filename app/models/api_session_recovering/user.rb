@@ -5,5 +5,5 @@ class ApiSessionRecovering::User < ApiSessionRecovering::ApplicationRecord
 
   has_many :restore_passwords
 
-  has_many :restore_password_attempts
+  has_many :restore_password_attempts, foreign_key: :email
 end
