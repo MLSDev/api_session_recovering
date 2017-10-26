@@ -13,5 +13,6 @@ class CreateApiSessionRecoveringRestorePasswords < ActiveRecord::Migration[5.1]
 
     add_index :api_session_recovering_restore_passwords, :token, unique: true
     add_index :api_session_recovering_restore_passwords, :expire_at
+    add_index :api_session_recovering_restore_passwords, 'LOWER(email)'
   end
 end

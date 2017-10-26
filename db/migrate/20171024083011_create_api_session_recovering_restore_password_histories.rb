@@ -14,5 +14,6 @@ class CreateApiSessionRecoveringRestorePasswordHistories < ActiveRecord::Migrati
 
     add_index :api_session_recovering_restore_password_histories, :token, unique: true, name: 'index_asr_restore_password_histories_on_token'
     add_index :api_session_recovering_restore_password_histories, :expire_at, name: 'index_asr_restore_password_histories_on_expire_at'
+    add_index :api_session_recovering_restore_password_attempts, 'LOWER(email)', name: 'index_asr_restore_password_attempts_on_lower_email'
   end
 end
