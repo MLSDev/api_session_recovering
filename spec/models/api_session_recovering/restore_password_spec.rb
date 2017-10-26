@@ -8,6 +8,10 @@ describe ApiSessionRecovering::RestorePassword do
   it { should callback(:setup_expire_at).before :create }
 
   describe '#setup_expire_at' do
-    it { expect { subject.send :setup_expire_at }.to_not raise_error }
+    it do
+      expect { subject.send :setup_expire_at }.to_not raise_error
+
+      expect(subject.expire_at).to_not be_nil
+    end
   end
 end
