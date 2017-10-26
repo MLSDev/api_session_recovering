@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/active_model/mocks'
 require 'rspec/its'
 require 'shoulda-matchers'
+require 'shoulda-callback-matchers'
 require 'database_cleaner'
 require 'faker'
 
