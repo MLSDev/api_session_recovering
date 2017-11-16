@@ -7,6 +7,8 @@ describe ApiSessionRecovering::ResetPassword do
 
   it { should validate_presence_of :token }
 
+  it { should have_many(:reset_password_validations).with_primary_key(:token).with_foreign_key(:token) }
+
   describe '#validate_reset_password_attempts_count from ApiSessionRecovering::ResetPasswordAttemptsValidations' do
     let(:preference) { stub_model ApiSessionRecovering::Preference, allowed_password_restore_attempts_per_day_count: 0 }
 
