@@ -26,7 +26,7 @@ Next, run:
 rake g api_session_recovering:install
 
 # This will add the necessary migrations to your app's db/migrate directory
-rake api_session_recovering:migrations
+rake api_session_recovering:install:migrations
 
 # This will run any pending migrations
 rake db:migrate
