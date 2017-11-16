@@ -8,6 +8,7 @@ require 'shoulda-matchers'
 require 'shoulda-callback-matchers'
 require 'database_cleaner'
 require 'faker'
+require 'factory_bot_rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f}
 
@@ -22,6 +23,7 @@ RSpec.configure do |config|
 
   # config.include Authentication
   # config.include Permitter
+  config.include FactoryBot::Syntax::Methods
 
   config.expect_with :rspec do |c|
     c.syntax = :expect
