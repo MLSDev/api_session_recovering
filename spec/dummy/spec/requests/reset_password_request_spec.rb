@@ -10,9 +10,9 @@ describe 'RESET PASSWORD' do
 
   let(:password) { Faker::Internet.password }
 
-  let(:user) { ApiSessionRecovering::User.create! password: password }
+  let(:user) { create :user, password: password }
 
-  let(:restore_password) { ApiSessionRecovering::RestorePassword.create! user: user }
+  let(:restore_password) { create :restore_password, user: user }
 
   let(:path) { '/api/session/reset_password' }
 
