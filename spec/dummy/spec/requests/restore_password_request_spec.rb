@@ -14,7 +14,7 @@ describe 'RESTORE PASSWORD' do
 
   let!(:preference) { ApiSessionRecovering::Preference.first_or_create! }
 
-  let(:path) { '/api/session/restore_password' }
+  let(:path) { '/api/session_recovering/restore_password' }
 
   context 'valid restore token' do
     let(:params) do

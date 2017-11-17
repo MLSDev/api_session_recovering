@@ -1,4 +1,4 @@
-class ApiSessionRecovering::Session::RestorePasswordsController < ApiSessionRecovering::BaseController
+class ApiSessionRecovering::SessionRecovering::RestorePasswordsController < ApiSessionRecovering::BaseController
   def show
     super
 

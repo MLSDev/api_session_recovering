@@ -1,5 +1,5 @@
 ApiSessionRecovering::Engine.routes.draw do
-  namespace :session do
+  namespace :session_recovering do
     resource :restore_password, only: :create
 
     namespace :reset_passwords do

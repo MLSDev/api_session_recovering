@@ -1,4 +1,4 @@
-class ApiSessionRecovering::Session::ResetPasswords::ValidatesController < ApiSessionRecovering::BaseController
+class ApiSessionRecovering::SessionRecovering::ResetPasswords::ValidatesController < ApiSessionRecovering::BaseController
   attr_reader :resource
 
   def create
