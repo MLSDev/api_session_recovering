@@ -15,6 +15,6 @@ class ApiSessionRecovering::Session::ResetPasswords::ValidatesController < ApiSe
     @resource = ApiSessionRecovering::ResetPasswordValidation.new \
       email: params[:email],
       token: params[:token],
-      ip_address: request.geocoder_spoofable_ip.to_s
+      remote_ip: request.geocoder_spoofable_ip.to_s
   end
 end

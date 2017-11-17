@@ -29,6 +29,10 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
+  # config.before(:all) do
+  #   FactoryBot.reload
+  # end
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)

@@ -1,10 +1,10 @@
 class ApiSessionRecovering::ResetPasswordValidationsAttempts < ::ActiveModel::Validator
   attr_reader :remote_ip, :email
 
-  def validate params
-    @remote_ip = params[:remote_ip]
+  def validate restore_password_validation
+    @remote_ip = restore_password_validation
 
-    @email = params[:email]
+    @email = restore_password_validation
 
     validate_attempts
   end
@@ -24,7 +24,7 @@ class ApiSessionRecovering::ResetPasswordValidationsAttempts < ::ActiveModel::Va
     #
     return if password_reset_validations_amount_today < allowed_password_reset_validations_per_day_count
 
-    restore_password.errors.add :base, 'too many reset password validations attempts today'
+    restore_password_validation.errors.add :base, 'too many reset password validations attempts today'
   end
 
   def allowed_password_reset_validations_per_day_count
@@ -34,7 +34,7 @@ class ApiSessionRecovering::ResetPasswordValidationsAttempts < ::ActiveModel::Va
 
   def password_reset_validations_amount_today
     @password_reset_validations_amount_today ||= ApiSessionRecovering::ResetPasswordValidation.
-      today_by_remote_ip_and_email(restore_password.remote_ip, restore_password.email).
+      today_by_remote_ip_and_email(remote_ip, email).
       count
   end
 end
