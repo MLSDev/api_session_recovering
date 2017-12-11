@@ -23,13 +23,13 @@ Next, run:
 
 ``` bash
 # add an initializer to config/initializers with all of the configuration options
-rake g api_session_recovering:install
+rails g api_session_recovering:install
 
 # This will add the necessary migrations to your app's db/migrate directory
-rake api_session_recovering:install:migrations
+rails api_session_recovering:install:migrations
 
 # This will run any pending migrations
-rake db:migrate
+rails db:migrate
 ```
 
 then add the following to your routes.rb file:
