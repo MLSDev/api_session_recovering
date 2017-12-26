@@ -11,13 +11,15 @@ Only Rails `~> 5` support.
 
 ## Installation
 
-Add these to your Gemfile
+Add these gems to your Gemfile
 
 ``` ruby
 gem 'api_session_recovering'
+
+gem 'geocoder'
 ```
 
-...and run `bundle install` to install the gem.
+...and run `bundle install` to install the gems.
 
 Next, run:
 
