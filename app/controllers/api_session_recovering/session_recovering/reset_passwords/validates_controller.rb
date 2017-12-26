@@ -4,7 +4,7 @@ class ApiSessionRecovering::SessionRecovering::ResetPasswords::ValidatesControll
   def create
     super
 
-    ApiSessionRecovering::ResetPassword.find_by_token! params[:token]
+    ApiSessionRecovering::RestorePassword.find_by_token! params[:token]
 
     head :no_content
   end
