@@ -34,6 +34,15 @@ class ApiSessionRecovering::ResetPasswordService
     #
     # Save every password reset request.
     # We allow certain amount of reqeusts per day.
+    #
+    reset_password_attempt.save!
+
+    #
+    # validate `ApiSessionRecovering::ResetPasswordService`
+    #
+    raise ::ActiveModel::StrictValidationFailed unless valid?
+
+    #
     # NOTE: check out validations inside `ApiSessionRecovering::ResetPassword` model
     #
     unless reset_password.save
@@ -42,27 +51,17 @@ class ApiSessionRecovering::ResetPasswordService
       raise ActiveModel::StrictValidationFailed
     end
 
-    #
-    # validate `ApiSessionRecovering::ResetPasswordService`
-    #
-    raise ::ActiveModel::StrictValidationFailed unless valid?
+    unless user.update password: password
+      @errors = user.errors
 
-    #
-    # log ApiSessionRecovering::`ApiSessionRecovering::ResetPasswordAttempt`
-    #
-    reset_password_attempt.save!
+      raise ::ActiveModel::StrictValidationFailed
+    end
 
     #
     # Remove `ApiSessionRecovering::RestorePassword` record
     # that triggers `ApiSessionRecovering::ResetPasswordHistory` creating
     #
     restore_password.destroy!
-
-    unless user.update password: password
-      @errors = user.errors
-
-      raise ::ActiveModel::StrictValidationFailed
-    end
   end
 
   def reset_password
@@ -103,4 +102,3 @@ class ApiSessionRecovering::ResetPasswordService
     errors.add :base, 'token was expired' if Time.zone.now.utc > restore_password.expire_at
   end
 end
-
