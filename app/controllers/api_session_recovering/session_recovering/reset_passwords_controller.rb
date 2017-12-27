@@ -16,6 +16,6 @@ class ApiSessionRecovering::SessionRecovering::ResetPasswordsController < ApiSes
   end
 
   def resource_params
-    params.require(:reset_password).permit :token, :old_password, :password, :password_confirmation, :email
+    params.require(:reset_password).permit :token, :password, :password_confirmation, :email
   end
 end
