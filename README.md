@@ -51,7 +51,7 @@ It will generate routes like
 
 ```
 Routes for ApiSessionRecovering::Engine:
-  restore_password            POST /session_recovering/restore_password(.:format)
-  reset_password              POST /session_recovering/reset_password(.:format)
-  reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
+  session_recovering_restore_password            POST /session_recovering/restore_password(.:format)
+  session_recovering_reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
+  session_recovering_reset_password              POST /session_recovering/reset_password(.:format)
 ```
