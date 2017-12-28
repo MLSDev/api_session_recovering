@@ -59,7 +59,7 @@ class ApiSessionRecovering::ResetPasswordService
 
     #
     # Remove `ApiSessionRecovering::RestorePassword` record
-    # that triggers `ApiSessionRecovering::ResetPasswordHistory` creating
+    # that triggers `ApiSessionRecovering::RestorePasswordHistory` creating
     #
     restore_password.destroy!
   end
