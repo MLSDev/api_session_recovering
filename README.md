@@ -7,7 +7,7 @@
 
 ApiSessionRecovering.
 
-Only Rails `~> 5` support.
+Only Rails `> 5` support.
 
 ## Installation
 
