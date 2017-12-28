@@ -55,3 +55,11 @@ Routes for ApiSessionRecovering::Engine:
   reset_password              POST /session_recovering/reset_password(.:format)
   reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
 ```
+
+HOWTO (steps)
+
+1. restore password
+2. reset password validation (if needed)
+3. reset password!
+
+
