@@ -69,7 +69,8 @@ class ApiSessionRecovering::ResetPasswordService
       remote_ip:      remote_ip,
       token:          token,
       token_is_valid: restore_password.present?,
-      user:           user
+      user:           user,
+      email:          email
   end
 
   def reset_password_attempt
