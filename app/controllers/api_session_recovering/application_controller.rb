@@ -1,2 +1,2 @@
-class ApiSessionRecovering::ApplicationController < ::ApplicationController
+class ApiSessionRecovering::ApplicationController < ApiSessionRecovering.configuration.controller_to_inherit_from.constantize
 end
