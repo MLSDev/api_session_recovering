@@ -3,6 +3,11 @@ module ApiSessionRecovering
     include ActiveSupport::Configurable
 
     #
+    # => Controller that should be inherited by engine ApplicationController, default is 'ActionController::Base'
+    #
+    config_accessor(:controller_to_inherit_from) { 'ActionController::Base' }
+
+    #
     # => Table name of User model, default is `users`
     #
     config_accessor(:users_table_name) { 'users' }
