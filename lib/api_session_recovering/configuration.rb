@@ -8,6 +8,11 @@ module ApiSessionRecovering
     config_accessor(:controller_to_inherit_from) { 'ActionController::Base' }
 
     #
+    # => Layout that should be used for mailers
+    #
+    config_accessor(:mailer_layout) { nil }
+
+    #
     # => Table name of User model, default is `users`
     #
     config_accessor(:users_table_name) { 'users' }

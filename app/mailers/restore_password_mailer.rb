@@ -1,4 +1,6 @@
 class RestorePasswordMailer < ::ApplicationMailer
+  layout ApiSessionRecovering.configuration.mailer_layout if ApiSessionRecovering.configuration.mailer_layout
+
   def email email, token, frontend_path
     @email         = email
     @token         = token
