@@ -5,7 +5,15 @@ describe ApiSessionRecovering::RestorePassword do
 
   it { should belong_to :user }
 
+  it { should validate_presence_of :frontend_path }
+
+  it { should validate_presence_of :email }
+
   it { should callback(:setup_expire_at).before :create }
+
+  it { should callback(:send_email_instructions).after(:commit).on(:create) }
+
+  it { should callback(:create_restore_password_history).after(:commit).on(:destroy) }
 
   describe '#setup_expire_at' do
     it do

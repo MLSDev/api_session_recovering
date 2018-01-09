@@ -20,7 +20,8 @@ describe 'RESTORE PASSWORD' do
     let(:params) do
       {
         "restore_password": {
-          "email": user.email,
+          "frontend_path": 'http://example.com',
+          "email": user.email
         }
       }
     end
