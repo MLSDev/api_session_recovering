@@ -3,7 +3,7 @@ class ApiSessionRecovering::RestorePasswordService
 
   attr_reader :email, :remote_ip, :frontend_path
 
-  validates :email, email: true
+  validates :email, email: true, unless: :phone?
 
   validate :user_exists
 
@@ -18,6 +18,8 @@ class ApiSessionRecovering::RestorePasswordService
     @frontend_path = params[:path].presence
 
     @email         = params[:email].presence
+
+    @phone         = params[:phone].presence
   end
 
   def save!
@@ -42,18 +44,44 @@ class ApiSessionRecovering::RestorePasswordService
   end
 
   def user
-    @user ||= ApiSessionRecovering::User.find_by email: email
+    @user ||= ApiSessionRecovering::User.find_by email: email if email?
+
+    @user ||= ApiSessionRecovering::User.find_by phone: phone if phone?
   end
 
   def restore_password
-    @restore_password ||= user.restore_passwords.build \
-     remote_ip:     remote_ip,
-     frontend_path: frontend_path,
-     email:         email
+    @restore_password ||= user.restore_passwords.build restore_password_params
   end
 
   def restore_password_attempt
-    @restore_password_attempt ||= ApiSessionRecovering::RestorePasswordAttempt.new remote_ip: remote_ip, email: email
+    @restore_password_attempt ||= ApiSessionRecovering::RestorePasswordAttempt.new restore_password_attempt_params
+  end
+
+  def restore_password_params
+    if email?
+      {
+        remote_ip:     remote_ip,
+        frontend_path: frontend_path,
+        email:         email
+      }
+    elsif phone?
+      {
+        phone:         phone
+      }
+    end
+  end
+
+  def restore_password_attempt_params
+    if email?
+      {
+        remote_ip:     remote_ip,
+        email:         email
+      }
+    elsif phone?
+      {
+        phone:         phone
+      }
+    end
   end
 
   def user_exists

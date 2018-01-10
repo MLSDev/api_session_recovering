@@ -1,0 +1,12 @@
+<h4>Restore password</h4>
+
+<p><b>Password reset code</b></p>
+
+<p>Please use this code to reset the password for your account <%= @restore_password.email %><b></b>.</p>
+
+<p>Here is your code: </p><h3><%= @restore_password.token %></h3>
+
+<p>If you are not trying to reset your password, please ignore this email.</p>
+
+<p>Thanks,</p>
+<p><%= Rails.application.class.parent_name %> team</p>

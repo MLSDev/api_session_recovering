@@ -101,4 +101,26 @@ class ApiSessionRecovering::ResetPasswordService
 
     errors.add :base, 'token was expired' if Time.zone.now.utc > restore_password.expire_at
   end
+
+  def reset_password_params
+    {
+      remote_ip:      remote_ip,
+      token:          token,
+      token_is_valid: restore_password.present?,
+      user:           user
+    }
+  end
+
+  def reset_password_attempt
+    if email?
+      {
+        remote_ip:     remote_ip,
+        email:         email
+      }
+    elsif phone?
+      {
+        phone:         phone
+      }
+    end
+  end
 end

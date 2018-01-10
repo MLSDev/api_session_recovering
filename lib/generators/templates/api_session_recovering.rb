@@ -14,4 +14,14 @@ ApiSessionRecovering.configure do |config|
   # => Restore Password Token will expire in `8` hours by default. Change it if U need some other value.
   #
   # config.hours_for_restore_password_token_to_be_expired = 8
+
+  #
+  # => Restore password method (:email, :sms)
+  #
+  # config.restore_password_methods = [:email]
+
+  #
+  # => Phone for sending sms (For recovering password via sms uncomment line below)
+  #
+  # config.phone_from { '+1**********' }
 end
