@@ -7,17 +7,19 @@
 
 ApiSessionRecovering.
 
-Only Rails `~> 5` support.
+Only Rails `> 5` support.
 
 ## Installation
 
-Add these to your Gemfile
+Add these gems to your Gemfile
 
 ``` ruby
 gem 'api_session_recovering'
+
+gem 'geocoder'
 ```
 
-...and run `bundle install` to install the gem.
+...and run `bundle install` to install the gems.
 
 Next, run:
 
@@ -49,7 +51,15 @@ It will generate routes like
 
 ```
 Routes for ApiSessionRecovering::Engine:
-  restore_password            POST /session_recovering/restore_password(.:format)
-  reset_password              POST /session_recovering/reset_password(.:format)
-  reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
+  session_recovering_restore_password            POST /session_recovering/restore_password(.:format)
+  session_recovering_reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
+  session_recovering_reset_password              POST /session_recovering/reset_password(.:format)
 ```
+
+### HOWTO (steps)
+
+1. restore password
+2. reset password validation (if needed)
+3. reset password!
+
+

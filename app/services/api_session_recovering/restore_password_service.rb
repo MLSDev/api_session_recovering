@@ -15,7 +15,7 @@ class ApiSessionRecovering::RestorePasswordService
     #
     @remote_ip     = request.geocoder_spoofable_ip.to_s if request
 
-    @frontend_path = params[:path].presence
+    @frontend_path = params[:frontend_path].presence
 
     @email         = params[:email].presence
   end
