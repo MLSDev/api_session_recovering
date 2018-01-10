@@ -16,14 +16,4 @@ describe ApiSessionRecovering::SessionRecovering::ResetPasswordsController do
 
     its(:resource) { should eq :resource }
   end
-
-  describe '#resource_params' do
-    it do
-      params = { id: 1, user: { activated: true } }
-
-      should permit(:activated).
-        for(:toggle, params: params, verb: :post).
-        on(:user)
-    end
-  end
 end
