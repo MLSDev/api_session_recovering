@@ -6,6 +6,7 @@ cache: bundler
 rvm:
   - 2.3.0
   - 2.4.2
+  - 2.5.0
   - ruby-head
 
 gemfile:
@@ -15,6 +16,7 @@ gemfile:
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - gemfile: gemfiles/rails_5.2.gemfile
 
 before_script:
   - psql -c 'drop database if exists api_session_recovering_app_test' -U postgres

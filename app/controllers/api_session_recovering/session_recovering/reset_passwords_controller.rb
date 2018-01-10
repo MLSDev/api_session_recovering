@@ -8,11 +8,11 @@ class ApiSessionRecovering::SessionRecovering::ResetPasswordsController < ApiSes
   private
 
   def resource
-    @reset_password
+    @resource
   end
 
   def build_resource
-    @reset_password = ApiSessionRecovering::ResetPasswordService.new request, resource_params
+    @resource = ApiSessionRecovering::ResetPasswordService.new request, resource_params
   end
 
   def resource_params
