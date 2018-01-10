@@ -1,4 +1,5 @@
-class ApiSessionRecovering::RestorePasswordMailer < ApplicationMailer
+class ApiSessionRecovering::RestorePasswordMailer < ::ApplicationMailer
+  layout ApiSessionRecovering.configuration.mailer_layout if ApiSessionRecovering.configuration.mailer_layout
 
   def email restore_password
     @restore_password = restore_password

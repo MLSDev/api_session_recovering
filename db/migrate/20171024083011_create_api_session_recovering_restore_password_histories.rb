@@ -4,6 +4,7 @@ class CreateApiSessionRecoveringRestorePasswordHistories < ActiveRecord::Migrati
       t.string     :remote_ip
       t.string     :token
       t.string     :email
+      t.string     :phone
       t.datetime   :expire_at
       t.datetime   :recovered_at
       t.references :user, foreign_key: true, index: { name: 'index_asr_restore_password_histories_on_user_id' }

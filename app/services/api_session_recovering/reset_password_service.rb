@@ -59,21 +59,17 @@ class ApiSessionRecovering::ResetPasswordService
 
     #
     # Remove `ApiSessionRecovering::RestorePassword` record
-    # that triggers `ApiSessionRecovering::ResetPasswordHistory` creating
+    # that triggers `ApiSessionRecovering::RestorePasswordHistory` creating
     #
     restore_password.destroy!
   end
 
   def reset_password
-    @reset_password ||= ApiSessionRecovering::ResetPassword.new \
-      remote_ip:      remote_ip,
-      token:          token,
-      token_is_valid: restore_password.present?,
-      user:           user
+    @reset_password ||= ApiSessionRecovering::ResetPassword.new reset_password_params
   end
 
   def reset_password_attempt
-    @reset_password_attempt ||= ApiSessionRecovering::ResetPasswordAttempt.new remote_ip: remote_ip, email: email
+    @reset_password_attempt ||= ApiSessionRecovering::ResetPasswordAttempt.new reset_password_attempt_params
   end
 
   def restore_password
@@ -107,11 +103,12 @@ class ApiSessionRecovering::ResetPasswordService
       remote_ip:      remote_ip,
       token:          token,
       token_is_valid: restore_password.present?,
-      user:           user
+      user:           user,
+      email:          user&.email
     }
   end
 
-  def reset_password_attempt
+  def reset_password_attempt_params
     if email?
       {
         remote_ip:     remote_ip,

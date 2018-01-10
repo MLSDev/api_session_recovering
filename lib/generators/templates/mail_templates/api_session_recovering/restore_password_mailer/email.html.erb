@@ -1,10 +1,10 @@
 <h4>Restore password</h4>
 
-<p><b>Password reset code</b></p>
+<p>Please use this code to reset the password for your account <strong><%= @restore_password.email %></strong>.</p>
 
-<p>Please use this code to reset the password for your account <%= @restore_password.email %><b></b>.</p>
+<p>Here is your code: <strong><%= @restore_password.token %></strong></p>
 
-<p>Here is your code: </p><h3><%= @restore_password.token %></h3>
+<p>Or follow this link <strong><%= link_to 'Restore password', "#{@restore_password.frontend_path}?token=#{@restore_password.token}" %></strong></p>.
 
 <p>If you are not trying to reset your password, please ignore this email.</p>
 

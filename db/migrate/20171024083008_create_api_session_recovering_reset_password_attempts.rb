@@ -3,6 +3,7 @@ class CreateApiSessionRecoveringResetPasswordAttempts < ActiveRecord::Migration[
     create_table :api_session_recovering_reset_password_attempts do |t|
       t.string     :remote_ip
       t.string     :email
+      t.string     :phone
 
       t.timestamps
     end

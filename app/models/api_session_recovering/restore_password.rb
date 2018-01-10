@@ -2,11 +2,15 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
 
   belongs_to :user
 
+  validates :email, :frontend_path, presence: true
+
   before_create :setup_expire_at
 
-  after_create :send_token
+  after_commit :send_token, on: :create
 
   before_create :generate_token
+
+  after_commit :create_restore_password_history, on: :destroy
 
   validates_with ApiSessionRecovering::RestorePasswordAttemptsValidations
 
@@ -28,5 +32,16 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
     self.token = SecureRandom.random_number(999999)
 
     generate_token if ApiSessionRecovering::RestorePassword.exists?(token: self.token, user: self.user)
+  end
+
+  def create_restore_password_history
+    ApiSessionRecovering::RestorePasswordHistory.create! \
+      remote_ip: remote_ip,
+      token: token,
+      email: email,
+      expire_at: expire_at,
+      recovered_at: Time.zone.now,
+      user: user,
+      frontend_path: frontend_path
   end
 end
