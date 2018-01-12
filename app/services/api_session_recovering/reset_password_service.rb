@@ -1,7 +1,7 @@
 class ApiSessionRecovering::ResetPasswordService
   include ActiveModel::Validations
 
-  attr_reader :remote_ip, :token, :password, :password_confirmation, :email
+  attr_reader :remote_ip, :token, :password, :password_confirmation, :email, :phone
 
   validate :token_is_valid
 
@@ -27,7 +27,9 @@ class ApiSessionRecovering::ResetPasswordService
 
     @password_confirmation = params[:password_confirmation]
 
-    @email                 = params[:email]
+    @email                 = params[:email].presence
+
+    @phone                 = params[:phone].presence
   end
 
   def save!
@@ -65,16 +67,11 @@ class ApiSessionRecovering::ResetPasswordService
   end
 
   def reset_password
-    @reset_password ||= ApiSessionRecovering::ResetPassword.new \
-      remote_ip:      remote_ip,
-      token:          token,
-      token_is_valid: restore_password.present?,
-      user:           user,
-      email:          email
+    @reset_password ||= ApiSessionRecovering::ResetPassword.new reset_password_params
   end
 
   def reset_password_attempt
-    @reset_password_attempt ||= ApiSessionRecovering::ResetPasswordAttempt.new remote_ip: remote_ip, email: email
+    @reset_password_attempt ||= ApiSessionRecovering::ResetPasswordAttempt.new reset_password_attempt_params
   end
 
   def restore_password
@@ -101,5 +98,28 @@ class ApiSessionRecovering::ResetPasswordService
     return unless restore_password.expire_at
 
     errors.add :base, 'token was expired' if Time.zone.now.utc > restore_password.expire_at
+  end
+
+  def reset_password_params
+    {
+      remote_ip:      remote_ip,
+      token:          token,
+      token_is_valid: restore_password.present?,
+      user:           user,
+      email:          user&.email
+    }
+  end
+
+  def reset_password_attempt_params
+    if email
+      {
+        remote_ip:     remote_ip,
+        email:         email
+      }
+    elsif phone
+      {
+        phone:         phone
+      }
+    end
   end
 end

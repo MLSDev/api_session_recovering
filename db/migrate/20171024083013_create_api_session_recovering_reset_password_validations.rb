@@ -4,6 +4,7 @@ class CreateApiSessionRecoveringResetPasswordValidations < ActiveRecord::Migrati
       t.string :remote_ip
       t.string :token
       t.string :email
+      t.string :phone
 
       t.timestamps
     end

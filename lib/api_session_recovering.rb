@@ -6,7 +6,6 @@ require 'email_validator'
 module ApiSessionRecovering
   autoload :EmailValidator, 'email_validator'
 
-
   def self.configure(&block)
     block.call configuration
   end

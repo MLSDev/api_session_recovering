@@ -7,9 +7,6 @@ module ApiSessionRecovering
     #
     config_accessor(:controller_to_inherit_from) { 'ActionController::Base' }
 
-    #
-    # => Layout that should be used for mailers
-    #
     config_accessor(:mailer_layout) { nil }
 
     #
@@ -32,5 +29,20 @@ module ApiSessionRecovering
     # => Restore password validation attempts per day
     #
     config_accessor(:allowed_password_reset_validations_per_day_count) { nil }
+
+    #
+    # => Restore password method (:email, :sms)
+    #
+    config_accessor(:restore_password_methods) { [:email] }
+
+    #
+    # => Restore password phone for twilio sms
+    #
+    config_accessor(:phone_from) { '+380555555555' }
+
+    #
+    # => Name of column with user phone number
+    #
+    config_accessor(:name_phone_column) { :phone }
   end
 end

@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'kaminari'
   s.add_dependency 'email_validator'
   s.add_dependency 'bcrypt'
+  s.add_dependency 'twilio-ruby'
 
   s.add_development_dependency 'draper'
   s.add_development_dependency 'listen'
@@ -26,7 +27,7 @@ Gem::Specification.new do |s|
   # s.add_development_dependency 'appraisal'
 
   # Databases
-  s.add_development_dependency 'pg'
+  s.add_development_dependency 'pg', '< 1'
 
   # Testing
   s.add_development_dependency 'spring'
