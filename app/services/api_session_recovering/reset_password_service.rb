@@ -1,7 +1,7 @@
 class ApiSessionRecovering::ResetPasswordService
   include ActiveModel::Validations
 
-  attr_reader :remote_ip, :token, :password, :password_confirmation, :email
+  attr_reader :remote_ip, :token, :password, :password_confirmation, :email, :phone
 
   validate :token_is_valid
 
@@ -27,7 +27,9 @@ class ApiSessionRecovering::ResetPasswordService
 
     @password_confirmation = params[:password_confirmation]
 
-    @email                 = params[:email]
+    @email                 = params[:email].presence
+
+    @phone                 = params[:phone].presence
   end
 
   def save!
@@ -109,12 +111,12 @@ class ApiSessionRecovering::ResetPasswordService
   end
 
   def reset_password_attempt_params
-    if email?
+    if email
       {
         remote_ip:     remote_ip,
         email:         email
       }
-    elsif phone?
+    elsif phone
       {
         phone:         phone
       }

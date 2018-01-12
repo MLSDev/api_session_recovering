@@ -37,11 +37,18 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
   end
 
   def create_restore_password_history
-    ApiSessionRecovering::RestorePasswordHistory.create! restore_password_history_params
+    ApiSessionRecovering::RestorePasswordHistory.create! \
+      remote_ip: remote_ip,
+      token: token,
+      email: email,
+      expire_at: expire_at,
+      recovered_at: Time.zone.now,
+      user: user,
+      frontend_path: frontend_path
   end
 
   def restore_password_history_params
-    if email?
+    if self.email?
       {
         remote_ip: remote_ip,
         token: token,
@@ -51,7 +58,7 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
         user: user,
         frontend_path: frontend_path
       }
-    elsif phone?
+    elsif self.phone?
       {
         token: token,
         expire_at: expire_at,

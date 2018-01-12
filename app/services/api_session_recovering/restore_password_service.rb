@@ -3,7 +3,7 @@ class ApiSessionRecovering::RestorePasswordService
 
   attr_reader :email, :remote_ip, :frontend_path, :phone
 
-  validates :email, email: true, unless: :phone?
+  validates :email, email: true, unless: :phone
 
   validate :user_exists
 
@@ -44,9 +44,11 @@ class ApiSessionRecovering::RestorePasswordService
   end
 
   def user
-    @user ||= ApiSessionRecovering::User.find_by email: email if email?
+    @user ||= ApiSessionRecovering::User.find_by email: email if email
 
-    @user ||= ApiSessionRecovering::User.find_by phone: phone if phone?
+    @user ||= ApiSessionRecovering::User.find_by phone: phone if phone
+
+    @user
   end
 
   def restore_password
@@ -58,13 +60,13 @@ class ApiSessionRecovering::RestorePasswordService
   end
 
   def restore_password_params
-    if email?
+    if email
       {
         remote_ip:     remote_ip,
         frontend_path: frontend_path,
         email:         email
       }
-    elsif phone?
+    elsif phone
       {
         phone:         phone
       }
@@ -72,12 +74,12 @@ class ApiSessionRecovering::RestorePasswordService
   end
 
   def restore_password_attempt_params
-    if email?
+    if email
       {
         remote_ip:     remote_ip,
         email:         email
       }
-    elsif phone?
+    elsif phone
       {
         phone:         phone
       }
