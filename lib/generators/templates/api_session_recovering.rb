@@ -6,11 +6,6 @@ ApiSessionRecovering.configure do |config|
   # config.controller_to_inherit_from = 'ActionController::Base'
 
   #
-  # => Layout that should be used for mailers
-  #
-  # config.mailer_layout = 'mailer'
-
-  #
   # => Table name for `User` entity. Change it if U want to use some different one. Default is `users`
   #
   # config.users_table_name = 'users'
@@ -29,6 +24,11 @@ ApiSessionRecovering.configure do |config|
   # => Add this if You want to use hardcoded amount of allowed password restore validation attempts (per day)
   #
   # config.hours_for_restore_password_token_to_be_expired = 8
+
+  #
+  # => Not use mailer layout by default
+  #
+  # config.mailer_layout = nil
 
   #
   # => Restore password method (:email, :sms)

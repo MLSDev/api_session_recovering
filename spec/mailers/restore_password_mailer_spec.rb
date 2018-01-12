@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe RestorePasswordMailer do
-  let(:user_class) { 'Admin' }
+describe ApiSessionRecovering::RestorePasswordMailer do
+  let(:user) { create :user }
 
-  subject { RestorePasswordMailer.email 'petewong88@gmail.com', 'Uyte6hoI6F', 'http://example.com' }
+  let(:restore_password) { create :restore_password, user: user }
+
+  subject { ApiSessionRecovering::RestorePasswordMailer.email restore_password  }
 
   its(:subject) { should eq 'Restore password' }
 end
