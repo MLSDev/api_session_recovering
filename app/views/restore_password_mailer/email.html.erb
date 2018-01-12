@@ -1,1 +1,12 @@
-<%= link_to 'Restore password', "#{@frontend_path}?token=#{@token}" %>
+<h4>Restore password</h4>
+
+<p>Please use this code to reset the password for your account <strong><%= @restore_password.email %></strong>.</p>
+
+<p>Here is your code: <strong><%= @restore_password.token %></strong></p>
+
+<p>Or follow this link <strong><%= link_to 'Restore password', "#{@restore_password.frontend_path}?token=#{@restore_password.token}" %></strong></p>.
+
+<p>If you are not trying to reset your password, please ignore this email.</p>
+
+<p>Thanks,</p>
+<p><%= Rails.application.class.parent_name %> team</p>

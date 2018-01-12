@@ -22,6 +22,6 @@ class ApiSessionRecovering::SessionRecovering::RestorePasswordsController < ApiS
   end
 
   def resource_params
-    params.require(:restore_password).permit :frontend_path, :email
+    params.require(:restore_password).permit :frontend_path, :email, :phone
   end
 end

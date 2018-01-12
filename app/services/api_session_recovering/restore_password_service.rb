@@ -1,7 +1,7 @@
 class ApiSessionRecovering::RestorePasswordService
   include ::ActiveModel::Validations
 
-  attr_reader :email, :remote_ip, :frontend_path
+  attr_reader :email, :remote_ip, :frontend_path, :phone
 
   validates :email, email: true, unless: :phone?
 

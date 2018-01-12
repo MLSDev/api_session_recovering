@@ -2,7 +2,9 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
 
   belongs_to :user
 
-  validates :email, :frontend_path, presence: true
+  validates :email, :frontend_path, presence: true, unless: :phone?
+
+  validates :phone, presence: true, unless: :email?
 
   before_create :setup_expire_at
 
@@ -35,13 +37,28 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
   end
 
   def create_restore_password_history
-    ApiSessionRecovering::RestorePasswordHistory.create! \
-      remote_ip: remote_ip,
-      token: token,
-      email: email,
-      expire_at: expire_at,
-      recovered_at: Time.zone.now,
-      user: user,
-      frontend_path: frontend_path
+    ApiSessionRecovering::RestorePasswordHistory.create! restore_password_history_params
+  end
+
+  def restore_password_history_params
+    if email?
+      {
+        remote_ip: remote_ip,
+        token: token,
+        email: email,
+        expire_at: expire_at,
+        recovered_at: Time.zone.now,
+        user: user,
+        frontend_path: frontend_path
+      }
+    elsif phone?
+      {
+        token: token,
+        expire_at: expire_at,
+        recovered_at: Time.zone.now,
+        user: user,
+        phone: phone
+      }
+    end
   end
 end

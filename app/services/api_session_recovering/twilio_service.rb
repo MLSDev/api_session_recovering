@@ -1,4 +1,6 @@
 class ApiSessionRecovering::TwilioService
+  require 'twilio-ruby'
+
   attr_accessor :phone_to, :phone_from, :text
 
   def initialize restore_password
@@ -20,7 +22,7 @@ class ApiSessionRecovering::TwilioService
   end
 
   def twilio_client
-    @twilio_client ||= Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
+    @twilio_client ||= ::Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
   end
 
   def user
