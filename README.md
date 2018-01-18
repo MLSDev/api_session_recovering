@@ -58,8 +58,15 @@ Routes for ApiSessionRecovering::Engine:
 
 Add in SWAGGERED_CLASSES array in api docs controller of project (if swagger gem is used in project)
 
+`ApiSessionRecovering::SWAGGER_CLASSES`
+
+And call on array `flatten` method like this
+
 ```
-ApiSessionRecovering::SWAGGER_CLASSES,
+SWAGGERED_CLASSES = [
+    SomeClass,
+    ApiSessionRecovering::SWAGGER_CLASSES,
+  ].flatten.freeze
 ```
 it  will add `reset password` and `restore password` documentation
 
