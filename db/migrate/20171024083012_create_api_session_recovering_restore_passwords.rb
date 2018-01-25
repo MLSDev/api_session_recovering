@@ -4,6 +4,7 @@ class CreateApiSessionRecoveringRestorePasswords < ActiveRecord::Migration[5.1]
       t.string     :remote_ip
       t.string     :token
       t.string     :email
+      t.string     :phone
       t.datetime   :expire_at
       t.references :user, index: true, foreign_key: true
       t.string     :frontend_path
