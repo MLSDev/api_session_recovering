@@ -11,9 +11,9 @@ describe ApiSessionRecovering::RestorePassword do
 
   it { should callback(:setup_expire_at).before :create }
 
-  it { should callback(:send_token).after(:commit).on(:create) }
+  it { should callback(:send_token).after(:commit) }
 
-  it { should callback(:create_restore_password_history).after(:commit).on(:destroy) }
+  it { should callback(:create_restore_password_history).after(:commit) }
 
   describe '#setup_expire_at' do
     it do
