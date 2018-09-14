@@ -13,6 +13,6 @@ module Dummy
     #
     # Add migrations from Engine
     #
-    config.paths['db/migrate'] << '../../../../db/migrate/'
+    config.paths['db/migrate'] = ['../../../db/migrate/']
   end
 end
