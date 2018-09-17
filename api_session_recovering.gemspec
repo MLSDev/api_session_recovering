@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ['']
   s.homepage    = 'https://github.com'
   s.summary     = 'A mountable api session recovering stuff'
-  s.description = 'MLSdev'
+  s.description = 'MLSDev'
 
   s.files = Dir["{ app, config, db, lib }/**/*"] + ['MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
