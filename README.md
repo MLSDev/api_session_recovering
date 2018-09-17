@@ -55,6 +55,50 @@ Routes for ApiSessionRecovering::Engine:
   session_recovering_reset_password              POST /session_recovering/reset_password(.:format)
 ```
 
+### Request params
+
+- POST /session_recovering/restore_password(.:format)
+
+```json
+"restore_password": {
+  "frontend_path": ...,
+  "email":         ...
+}
+```
+
+OR 
+
+```json
+"restore_password": {
+  "frontend_path": ...,
+  "email":         ...
+}
+```
+
+- POST /session_recovering/reset_passwords/validate(.:format)
+
+```json
+{
+  "email": ...,
+  "token": ...
+}
+```
+
+- POST /session_recovering/reset_password(.:format)
+
+
+```javascript
+{
+  "token": ...,
+  "password": ...,
+  "password_confirmation": ..., 
+  "email": ...                     // token should be unique in scope of email (security reasons)
+}
+```
+
+
+### SWAGGER
+
 Add in SWAGGERED_CLASSES array in api docs controller of project (if swagger gem is used in project)
 
 `ApiSessionRecovering::SWAGGER_CLASSES`
@@ -75,4 +119,18 @@ it  will add `reset password` and `restore password` documentation
 2. reset password validation (if needed)
 3. reset password!
 
+### Have questions/want to know how to configure somethig?
 
+We have prepared cool [Wiki](https://github.com/MLSDev/api_session_recovering/wiki) page for You!
+
+## About MLSDev
+
+![MLSdev][logo]
+
+ApiSessionRecovering is maintained by MLSDev, Inc. We specialize in providing all-in-one solution in mobile and web development. Our team follows Lean principles and works according to agile methodologies to deliver the best results reducing the budget for development and its timeline.
+
+Find out more [here][mlsdev] and don't hesitate to [contact us][contact]!
+
+[mlsdev]:  https://mlsdev.com
+[contact]: https://mlsdev.com/contact_us
+[logo]:    https://raw.githubusercontent.com/MLSDev/development-standards/master/mlsdev-logo.png "Mlsdev"
