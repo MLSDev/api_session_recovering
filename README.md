@@ -75,4 +75,6 @@ it  will add `reset password` and `restore password` documentation
 2. reset password validation (if needed)
 3. reset password!
 
+### Have questions/want to know how to configure somethig?
 
+We have prepared cool [Wiki](https://github.com/MLSDev/api_session_recovering/wiki) page for You!
