@@ -1,11 +1,10 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/febb3376c6586f609650/maintainability)](https://codeclimate.com/github/DmytroStepaniuk/api_session_recovering/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/febb3376c6586f609650/test_coverage)](https://codeclimate.com/github/DmytroStepaniuk/api_session_recovering/test_coverage)
-[![Build Status](https://travis-ci.org/DmytroStepaniuk/api_session_recovering.svg?branch=master)](https://travis-ci.org/DmytroStepaniuk/api_session_recovering)
-[![Dependency Status](https://gemnasium.com/badges/github.com/DmytroStepaniuk/api_session_recovering.svg)](https://gemnasium.com/github.com/DmytroStepaniuk/api_session_recovering)
+[![Build Status](https://travis-ci.org/MLSDev/api_session_recovering.svg?branch=master)](https://travis-ci.org/MLSDev/api_session_recovering)
 
 # ApiSessionRecovering
 
-ApiSessionRecovering.
+`ApiSessionRecovering`.
 
 Only Rails `> 5` support.
 
@@ -14,7 +13,7 @@ Only Rails `> 5` support.
 Add these gems to your Gemfile
 
 ``` ruby
-gem 'api_session_recovering'
+gem 'api_session_recovering', github: 'MLSDev/api_session_recovering'
 
 gem 'geocoder'
 ```
