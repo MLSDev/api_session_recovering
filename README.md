@@ -71,7 +71,7 @@ OR
 ```json
 "restore_password": {
   "frontend_path": ...,
-  "email":         ...
+  "phone":         ...
 }
 ```
 
