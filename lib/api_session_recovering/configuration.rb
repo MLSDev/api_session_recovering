@@ -46,6 +46,6 @@ module ApiSessionRecovering
     #
     # => Name of column with user phone number
     #
-    config_accessor(:name_phone_column) { :phone }
+    config_accessor(:name_of_users_phone_column) { :phone }
   end
 end
