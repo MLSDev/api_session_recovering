@@ -87,12 +87,12 @@ OR
 - POST /session_recovering/reset_password(.:format)
 
 
-```json
+```javascript
 {
   "token": ...,
   "password": ...,
   "password_confirmation": ..., 
-  "email": ...
+  "email": ...                     // token should be unique in scope of email (security reasons)
 }
 ```
 
