@@ -57,7 +57,7 @@ Routes for ApiSessionRecovering::Engine:
 
 ### Request params
 
-POST /session_recovering/restore_password(.:format)
+- POST /session_recovering/restore_password(.:format)
 
 ```json
 "restore_password": {
@@ -74,6 +74,28 @@ OR
   "email":         ...
 }
 ```
+
+- POST /session_recovering/reset_passwords/validate(.:format)
+
+```json
+{
+  "email": ...,
+  "token": ...
+}
+```
+
+- POST /session_recovering/reset_password(.:format)
+
+
+```json
+{
+  "token": ...,
+  "password": ...,
+  "password_confirmation": ..., 
+  "email": ...
+}
+```
+
 
 ### SWAGGER
 
