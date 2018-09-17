@@ -55,6 +55,28 @@ Routes for ApiSessionRecovering::Engine:
   session_recovering_reset_password              POST /session_recovering/reset_password(.:format)
 ```
 
+### Request params
+
+POST /session_recovering/restore_password(.:format)
+
+```json
+"restore_password": {
+  "frontend_path": ...,
+  "email":         ...
+}
+```
+
+OR 
+
+```json
+"restore_password": {
+  "frontend_path": ...,
+  "email":         ...
+}
+```
+
+### SWAGGER
+
 Add in SWAGGERED_CLASSES array in api docs controller of project (if swagger gem is used in project)
 
 `ApiSessionRecovering::SWAGGER_CLASSES`
