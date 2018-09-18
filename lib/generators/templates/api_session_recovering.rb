@@ -42,4 +42,8 @@ ApiSessionRecovering.configure do |config|
 
   # config.allowed_password_reset_validations_per_day_count = 20
 
+  #
+  # => Add this if You want change restore password text for send sms, restore_password_token - the required special character
+  #
+  # config.restore_password_text { 'To restore password enter your verification restore_password_token code' }
 end
