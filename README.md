@@ -60,18 +60,22 @@ Routes for ApiSessionRecovering::Engine:
 - POST /session_recovering/restore_password(.:format)
 
 ```json
-"restore_password": {
-  "frontend_path": ...,
-  "email":         ...
+{
+  "restore_password": {
+    "frontend_path": ...,
+    "email":         ...
+  }
 }
 ```
 
 OR 
 
 ```json
-"restore_password": {
-  "frontend_path": ...,
-  "phone":         ...
+{
+  "restore_password": {
+    "frontend_path": ...,
+    "phone":         ...
+  }
 }
 ```
 
@@ -89,10 +93,12 @@ OR
 
 ```javascript
 {
-  "token": ...,
-  "password": ...,
-  "password_confirmation": ..., 
-  "email": ...                     // token should be unique in scope of email (security reasons)
+  "reset_password": {
+    "token": ...,
+    "password": ...,
+    "password_confirmation": ...,
+    "email": ...                     // token should be unique in scope of email (security reasons)
+  }
 }
 ```
 
