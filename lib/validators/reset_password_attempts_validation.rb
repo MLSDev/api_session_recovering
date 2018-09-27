@@ -20,7 +20,7 @@ class ApiSessionRecovering::ResetPasswordAttemptsValidations < ::ActiveModel::Va
     #
     # dont allow to create so much `reset_passwords` models per day
     #
-    return if reset_password_attempts_amount_today < allowed_password_restore_attempts_per_day_count
+    return if reset_password_attempts_amount_today_via_email < allowed_password_restore_attempts_per_day_count
 
     reset_password.errors.add :base, I18n.t('api_session_recovering.errors.reset_password.too_many_attempts')
   end
@@ -33,9 +33,21 @@ class ApiSessionRecovering::ResetPasswordAttemptsValidations < ::ActiveModel::Va
     end
   end
 
-  def reset_password_attempts_amount_today
-    @reset_password_attempts_amount_today ||= ApiSessionRecovering::ResetPasswordAttempt.
+  def reset_password_attempts_amount_today_via_email
+    return unless reset_password.email.present?
+
+    @reset_password_attempts_amount_today_via_email ||= ApiSessionRecovering::ResetPasswordAttempt.
       today_by_remote_ip_and_email(reset_password.remote_ip, reset_password.email).
+      count
+  end
+
+  def reset_password_attempts_amount_today_via_phone
+    phone_col_name = ApiSessionRecovering.configuration.name_of_users_phone_column
+
+    return unless reset_password.send(phone_col_name).present?
+
+    @reset_password_attempts_amount_today_via_phone ||= ApiSessionRecovering::ResetPasswordAttempt.
+      today_by_remote_ip_and_phone(reset_password.remote_ip, reset_password.send(phone_col_name)).
       count
   end
 end

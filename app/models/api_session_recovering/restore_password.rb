@@ -27,7 +27,7 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
 
     ApiSessionRecovering::RestorePasswordMailer.email(self).deliver_later if restore_password_methods.include? :email
 
-    ApiSessionRecovering::TwilioService.new(self).send_sms if restore_password_methods.include? :sms
+    ApiSessionRecovering::TwilioService.new(self).send_sms                if restore_password_methods.include? :sms
   end
 
   def generate_token
@@ -43,21 +43,21 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
   def restore_password_history_params
     if email?
       {
-        remote_ip: remote_ip,
-        token: token,
-        email: email,
-        expire_at: expire_at,
-        recovered_at: Time.zone.now,
-        user: user,
+        remote_ip:     remote_ip,
+        token:         token,
+        email:         email,
+        expire_at:     expire_at,
+        recovered_at:  Time.zone.now,
+        user:          user,
         frontend_path: frontend_path
       }
     elsif phone?
       {
-        token: token,
-        expire_at: expire_at,
+        token:        token,
+        expire_at:    expire_at,
         recovered_at: Time.zone.now,
-        user: user,
-        phone: phone
+        user:         user,
+        phone:        phone
       }
     end
   end

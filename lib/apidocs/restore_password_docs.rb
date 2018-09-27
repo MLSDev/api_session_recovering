@@ -20,7 +20,7 @@ class ApiSessionRecovering::RestorePasswordDocs
       parameter do
         key :name, 'restore_password[path]'
         key :in, :formData
-        key :required, true
+        key :required, false
         key :type, :string
       end
 

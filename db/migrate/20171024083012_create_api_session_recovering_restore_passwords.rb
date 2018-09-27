@@ -5,6 +5,8 @@ class CreateApiSessionRecoveringRestorePasswords < ActiveRecord::Migration[5.1]
       t.string     :token
       t.string     :email
       t.string     :phone
+      t.integer    :status
+      t.integer    :kind
       t.datetime   :expire_at
       t.references :user, index: true, foreign_key: true
       t.string     :frontend_path
@@ -14,6 +16,8 @@ class CreateApiSessionRecoveringRestorePasswords < ActiveRecord::Migration[5.1]
 
     add_index :api_session_recovering_restore_passwords, :token, unique: true
     add_index :api_session_recovering_restore_passwords, :expire_at
+    add_index :api_session_recovering_restore_passwords, :kind
+    add_index :api_session_recovering_restore_passwords, :status
     add_index :api_session_recovering_restore_passwords, 'LOWER(email)'
   end
 end
