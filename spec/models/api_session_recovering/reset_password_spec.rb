@@ -14,6 +14,8 @@ describe ApiSessionRecovering::ResetPassword do
 
     before { expect(ApiSessionRecovering::Preference).to receive(:first_or_create!).and_return preference }
 
+    before { allow(subject).to receive(:email).and_return 'test@example.com' }
+
     before { subject.valid? }
 
     it { expect(subject.errors[:base]).to include(I18n.t('api_session_recovering.errors.reset_password.too_many_attempts')) }
