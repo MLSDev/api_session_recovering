@@ -18,7 +18,7 @@ class ApiSessionRecovering::TwilioService
   private
 
   def restore_password_text
-    @restore_password_text ||= "To restore password enter your verification code #{ @restore_password.token }"
+    @restore_password_text ||= ApiSessionRecovering.configuration.restore_password_text.to_s.gsub('restore_password_token', @restore_password.token)
   end
 
   def twilio_client

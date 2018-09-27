@@ -47,5 +47,10 @@ module ApiSessionRecovering
     # => Name of column with user phone number
     #
     config_accessor(:name_of_users_phone_column) { :phone }
+
+    #
+    # => Default restore password text for sms, restore_password_token - the required special character
+    #
+    config_accessor(:restore_password_text) { 'To restore password enter your verification restore_password_token code' }
   end
 end
