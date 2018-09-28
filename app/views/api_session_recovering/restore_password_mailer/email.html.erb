@@ -2,17 +2,20 @@
 
 <p>Please use this code to reset the password for your account <strong><%= @restore_password.email %></strong>.</p>
 
-<p>Here is your code: <strong><%= @restore_password.token %></strong></p>
-
 <p>
-  Or follow this link <strong>
-    <%=
-      link_to \
-        'Restore password',
-        "#{@restore_password.frontend_path}?token=#{@restore_password.token}&email=#{ @restore_password.user.email }"
-    %>
-  </strong>
-</p>.
+  <% if @restore_password.frontend_path.present? %>
+    Follow this link
+    <strong>
+      <%=
+        link_to \
+          'Restore password',
+          "#{ @restore_password.frontend_path }?token=#{ @restore_password.token }&email=#{ @restore_password.user.email }"
+      %>
+    </strong>
+  <% else %>
+    Here is your code: <strong><%= @restore_password.token %></strong>
+  <% end %>
+</p>
 
 <p>If you are not trying to reset your password, please ignore this email.</p>
 
