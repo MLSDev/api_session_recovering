@@ -13,7 +13,7 @@ Only Rails `> 5` support.
 Add these gems to your Gemfile
 
 ``` ruby
-gem 'api_session_recovering', github: 'MLSDev/api_session_recovering', tag: 'v0.1.1'
+gem 'api_session_recovering', github: 'MLSDev/api_session_recovering', tag: 'v0.1.3'
 
 gem 'geocoder'
 ```
