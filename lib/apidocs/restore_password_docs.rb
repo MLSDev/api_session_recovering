@@ -18,7 +18,7 @@ class ApiSessionRecovering::RestorePasswordDocs
         key :type, :string
       end
       parameter do
-        key :name, 'restore_password[path]'
+        key :name, 'restore_password[frontend_path]'
         key :in, :formData
         key :required, false
         key :type, :string
@@ -52,7 +52,7 @@ class ApiSessionRecovering::RestorePasswordDocs
       end
       parameter do
         key :name, :token
-        key :in, :path
+        key :in, :frontend_path
         key :required, true
         key :type, :string
       end
