@@ -5,7 +5,7 @@ class ApiSessionRecovering::ResetPasswordDocs
   swagger_path '/session_recovering/reset_password' do
     operation :post do
       key :description, 'reset_password'
-      key :summary, 'reset_password'
+      key :summary, '2nd step of password recovering.'
       key :tags, ['Reset password']
       key :consumes, ['multipart/form-data']
       security do
