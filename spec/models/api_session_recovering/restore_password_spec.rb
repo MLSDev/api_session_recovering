@@ -5,8 +5,6 @@ describe ApiSessionRecovering::RestorePassword do
 
   it { should belong_to :user }
 
-  it { should validate_presence_of :frontend_path }
-
   it { should validate_presence_of :email }
 
   it { should callback(:setup_expire_at).before :create }

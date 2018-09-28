@@ -2,7 +2,7 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
 
   belongs_to :user
 
-  validates :email, :frontend_path, presence: true, unless: :phone?
+  validates :email, presence: true, unless: :phone?
 
   validates :phone, presence: true, unless: :email?
 
