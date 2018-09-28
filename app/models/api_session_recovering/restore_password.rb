@@ -6,6 +6,8 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
 
   validates :phone, presence: true, unless: :email?
 
+  before_validation :set_up_frontend_path, on: :create
+
   before_create :setup_expire_at
 
   after_commit :send_token, on: :create
@@ -17,6 +19,10 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
   validates_with ApiSessionRecovering::RestorePasswordAttemptsValidations
 
   private
+
+  def set_up_frontend_path
+    self.frontend_path ||= ENV['API_SESSION_RECOVERING_FRONTEND_PATH']
+  end
 
   def setup_expire_at
     self.expire_at = ApiSessionRecovering.configuration.hours_for_restore_password_token_to_be_expired.hours.from_now.utc
