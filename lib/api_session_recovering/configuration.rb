@@ -17,6 +17,8 @@ module ApiSessionRecovering
     #
     config_accessor(:users_table_name) { 'users' }
 
+    config_accessor(:users_project_entity_class_name) { 'User' }
+
     #
     # => Count that shows how many password restore attempts do we allow (per day)
     # => There will be used value from ApiSessionRecovering::Preference if here was specified no value
