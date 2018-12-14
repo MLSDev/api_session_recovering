@@ -83,9 +83,15 @@ class ApiSessionRecovering::ResetPasswordService
 
     return unless if restore_password&.user_id.present?
 
-    @user ||= "::#{ ApiSessionRecovering.configuration.users_project_entity_class_name }".
-      constantize.
-      find_by_id: restore_password.user_id
+    if defined?("::#{ ApiSessionRecovering.configuration.users_project_entity_class_name }".constantize)
+      @user = "::#{ ApiSessionRecovering.configuration.users_project_entity_class_name }".
+        constantize.
+        find_by_id: restore_password.user_id
+
+      return @user
+    end
+
+    @user = restore_password&.user
   end
 
   #
