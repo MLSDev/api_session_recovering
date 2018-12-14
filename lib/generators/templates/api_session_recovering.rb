@@ -10,6 +10,8 @@ ApiSessionRecovering.configure do |config|
   #
   # config.users_table_name = 'users'
 
+  # config.users_project_entity_class_name = 'User'
+
   #
   # => Restore Password Token will expire in `8` hours by default. Change it if You need some other value.
   #
