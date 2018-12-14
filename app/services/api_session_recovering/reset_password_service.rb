@@ -86,7 +86,7 @@ class ApiSessionRecovering::ResetPasswordService
     if defined?("::#{ ApiSessionRecovering.configuration.users_project_entity_class_name }".constantize)
       @user = "::#{ ApiSessionRecovering.configuration.users_project_entity_class_name }".
         constantize.
-        find_by_id: restore_password.user_id
+        find_by_id restore_password.user_id
 
       return @user
     end
