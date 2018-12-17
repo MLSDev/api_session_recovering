@@ -19,7 +19,7 @@ class ApiSessionRecovering::ResetPasswordAttemptsValidations < ::ActiveModel::Va
       return unless reset_password.remote_ip.present?
     end
 
-    return unless reset_password.phone.present?
+    return unless reset_password.email.present?
 
     #
     # dont allow to create so much `reset_passwords` models per day
@@ -37,7 +37,7 @@ class ApiSessionRecovering::ResetPasswordAttemptsValidations < ::ActiveModel::Va
       return unless reset_password.remote_ip.present?
     end
 
-    return unless reset_password.email
+    return unless reset_password.phone.present?
 
     #
     # dont allow to create so much `reset_passwords` models per day
