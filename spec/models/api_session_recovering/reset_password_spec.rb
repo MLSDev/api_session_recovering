@@ -10,11 +10,18 @@ describe ApiSessionRecovering::ResetPassword do
   it { should have_many(:reset_password_validations).with_primary_key(:token).with_foreign_key(:token) }
 
   describe '#validate_reset_password_attempts_count from ApiSessionRecovering::ResetPasswordAttemptsValidations' do
-    let(:preference) { stub_model ApiSessionRecovering::Preference, allowed_password_restore_attempts_per_day_count: 0 }
+    before { subject.email = 'test@example.com' }
+
+    let(:preference) do
+      stub_model ApiSessionRecovering::Preference,
+        allowed_password_restore_attempts_per_day_count: 0,
+        allowed_password_reset_per_day_count: 0,
+        allowed_password_reset_validations_per_day_count: 0
+    end
 
     before { expect(ApiSessionRecovering::Preference).to receive(:first_or_create!).and_return preference }
 
-    before { allow(subject).to receive(:email).and_return 'test@example.com' }
+    before { allow(ApiSessionRecovering::ResetPasswordAttempt).to receive(:today_by_remote_ip_and_email).with(nil, 'test@example.com').and_return 0 }
 
     before { subject.valid? }
 
