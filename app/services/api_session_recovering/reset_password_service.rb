@@ -43,21 +43,21 @@ class ApiSessionRecovering::ResetPasswordService
       #
       # validate `ApiSessionRecovering::ResetPasswordService`
       #
-      raise ::ActiveModel::StrictValidationFailed unless valid?
+      raise ActiveModel::StrictValidationFailed unless valid?
 
       #
       # NOTE: check out validations inside `ApiSessionRecovering::ResetPassword` model
       #
-      unless reset_password.save
+      if valid? && !reset_password.save
         @errors = reset_password.errors
 
         raise ActiveModel::StrictValidationFailed
       end
 
-      unless user.update password: password
+      if reset_password.valid? && !user.update(password: password)
         @errors = user.errors
 
-        raise ::ActiveModel::StrictValidationFailed
+        raise ActiveModel::StrictValidationFailed
       end
 
       #
