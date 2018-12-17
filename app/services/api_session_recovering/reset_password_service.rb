@@ -37,9 +37,9 @@ class ApiSessionRecovering::ResetPasswordService
     # Save every password reset request.
     # We allow certain amount of reqeusts per day.
     #
-    ApiSessionRecovering::ApplicationRecord.transaction do
-      reset_password_attempt.save!
+    reset_password_attempt.save!
 
+    ApiSessionRecovering::ApplicationRecord.transaction do
       #
       # validate `ApiSessionRecovering::ResetPasswordService`
       #
