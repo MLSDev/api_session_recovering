@@ -12,8 +12,8 @@ describe ApiSessionRecovering::ResetPassword do
   describe '#validate_reset_password_attempts_count from ApiSessionRecovering::ResetPasswordAttemptsValidations' do
     before { subject.email = 'test@example.com' }
 
-    let!(:preference) do
-      ApiSessionRecovering::Preference.create! \
+    let(:preference) do
+      stub_model ApiSessionRecovering::Preference,
         allowed_password_restore_attempts_per_day_count: 0,
         allowed_password_reset_per_day_count: 0,
         allowed_password_reset_validations_per_day_count: 0
