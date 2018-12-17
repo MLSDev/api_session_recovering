@@ -37,33 +37,35 @@ class ApiSessionRecovering::ResetPasswordService
     # Save every password reset request.
     # We allow certain amount of reqeusts per day.
     #
-    reset_password_attempt.save!
+    ApiSessionRecovering::ApplicationRecord.transaction do
+      reset_password_attempt.save!
 
-    #
-    # validate `ApiSessionRecovering::ResetPasswordService`
-    #
-    raise ::ActiveModel::StrictValidationFailed unless valid?
+      #
+      # validate `ApiSessionRecovering::ResetPasswordService`
+      #
+      raise ::ActiveModel::StrictValidationFailed unless valid?
 
-    #
-    # NOTE: check out validations inside `ApiSessionRecovering::ResetPassword` model
-    #
-    unless reset_password.save
-      @errors = reset_password.errors
+      #
+      # NOTE: check out validations inside `ApiSessionRecovering::ResetPassword` model
+      #
+      unless reset_password.save
+        @errors = reset_password.errors
 
-      raise ActiveModel::StrictValidationFailed
+        raise ActiveModel::StrictValidationFailed
+      end
+
+      unless user.update password: password
+        @errors = user.errors
+
+        raise ::ActiveModel::StrictValidationFailed
+      end
+
+      #
+      # Remove `ApiSessionRecovering::RestorePassword` record
+      # that triggers `ApiSessionRecovering::RestorePasswordHistory` creating
+      #
+      restore_password.destroy!
     end
-
-    unless user.update password: password
-      @errors = user.errors
-
-      raise ::ActiveModel::StrictValidationFailed
-    end
-
-    #
-    # Remove `ApiSessionRecovering::RestorePassword` record
-    # that triggers `ApiSessionRecovering::RestorePasswordHistory` creating
-    #
-    restore_password.destroy!
   end
 
   def reset_password
