@@ -40,7 +40,7 @@ ApiSessionRecovering.configure do |config|
   #
   # => Phone for sending sms (For recovering password via sms uncomment line below)
   #
-  # config.phone_from { '+1**********' }
+  # config.phone_from = '+1**********'
 
   # config.allowed_password_reset_validations_per_day_count = 20
 
