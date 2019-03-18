@@ -31,13 +31,13 @@ class ApiSessionRecovering::RestorePassword < ApiSessionRecovering::ApplicationR
   def send_token
     restore_password_methods = ApiSessionRecovering.configuration.restore_password_methods
 
-    ApiSessionRecovering::RestorePasswordMailer.email(self).deliver_later if restore_password_methods.include? :email
+    ApiSessionRecovering::RestorePasswordMailer.email(self).deliver_later if restore_password_methods.include?(:email) && email
 
-    ApiSessionRecovering::TwilioService.new(self).send_sms                if restore_password_methods.include? :sms
+    ApiSessionRecovering::TwilioService.new(self).send_sms                if restore_password_methods.include?(:sms) && phone
   end
 
   def generate_token
-    self.token = SecureRandom.random_number(999999)
+    self.token = rand(100000..999999)
 
     generate_token if ApiSessionRecovering::RestorePassword.exists?(token: self.token, user: self.user)
   end
