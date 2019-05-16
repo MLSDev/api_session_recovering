@@ -6,7 +6,7 @@ class ApiSessionRecovering::ResetPasswordDocs
     operation :post do
       key :description, 'reset_password'
       key :summary, '2nd step of password recovering.'
-      key :tags, ['Reset password']
+      key :tags, ['restore password']
       key :consumes, ['multipart/form-data']
       security do
         key :api_key, []
@@ -55,4 +55,3 @@ class ApiSessionRecovering::ResetPasswordDocs
     end
   end
 end
-

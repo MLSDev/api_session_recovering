@@ -6,7 +6,7 @@ class ApiSessionRecovering::RestorePasswordDocs
     operation :post do
       key :description, 'restore_password'
       key :summary, '1st step of password recovering. Generates the code and sends it to user.'
-      key :tags, ['Restore password']
+      key :tags, ['restore password']
       key :consumes, ['multipart/form-data']
       security do
         key :api_key, []
@@ -45,7 +45,7 @@ class ApiSessionRecovering::RestorePasswordDocs
     operation :get do
       key :description, 'Validate restore token'
       key :summary, 'validate restore token'
-      key :tags, ['Restore password']
+      key :tags, ['restore password']
       key :consumes, ['multipart/form-data']
       security do
         key :api_key, []
