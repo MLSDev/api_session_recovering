@@ -4,7 +4,6 @@ class ApiSessionRecovering::ResetPasswordDocs
 
   swagger_path '/session_recovering/reset_password' do
     operation :post do
-      key :description, 'reset_password'
       key :summary, '2nd step of password recovering.'
       key :tags, ['restore password']
       key :consumes, ['multipart/form-data']
@@ -37,17 +36,14 @@ class ApiSessionRecovering::ResetPasswordDocs
         key :type, :string
         key :format, :password
       end
-
-      response '204' do
+      response 204 do
         key :description, 'Success without body'
       end
-
-      response '404' do
-        key :description, 'NotFound'
+      response 404 do
+        key :description, 'Not Found'
       end
-
-      response '422' do
-        key :description, 'UnprocessableEntity'
+      response 422 do
+        key :description, 'Unprocessable Entity'
         schema do
           key :'$ref', :UnprocessableEntity
         end

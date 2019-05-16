@@ -4,7 +4,6 @@ class ApiSessionRecovering::RestorePasswordDocs
 
   swagger_path '/session_recovering/restore_password' do
     operation :post do
-      key :description, 'restore_password'
       key :summary, '1st step of password recovering. Generates the code and sends it to user.'
       key :tags, ['restore password']
       key :consumes, ['multipart/form-data']
@@ -23,17 +22,48 @@ class ApiSessionRecovering::RestorePasswordDocs
         key :required, false
         key :type, :string
       end
-
-      response '204' do
+      response 204 do
         key :description, 'Success without body'
       end
-
-      response '404' do
-        key :description, 'NotFound'
+      response 404 do
+        key :description, 'Not Found'
       end
+      response 422 do
+        key :description, 'Unprocessable Entity'
+        schema do
+          key :'$ref', :UnprocessableEntity
+        end
+      end
+    end
+  end
 
-      response '422' do
-        key :description, 'UnprocessableEntity'
+  swagger_path '/session_recovering/restore_password/validation' do
+    operation :post do
+      key :summary, 'validate restore token'
+      key :tags, ['restore password']
+      security do
+        key :api_key, []
+      end
+      parameter do
+        key :name, 'restore_password[token]'
+        key :in, :formData
+        key :required, true
+        key :type, :string
+      end
+      parameter do
+        key :name, 'restore_password[email]'
+        key :in, :formData
+        key :required, true
+        key :type, :string
+      end
+      response 204 do
+        key :description, 'Success without body'
+      end
+      response 404 do
+        key :description, 'Not Found'
+      end
+      response 422 do
+        key :description, 'Unprocessable Entity'
         schema do
           key :'$ref', :UnprocessableEntity
         end
