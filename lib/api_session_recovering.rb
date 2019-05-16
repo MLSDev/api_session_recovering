@@ -10,6 +10,7 @@ module ApiSessionRecovering
   SWAGGER_CLASSES = [
     ::ApiSessionRecovering::ResetPasswordDocs,
     ::ApiSessionRecovering::RestorePasswordDocs,
+    ::ApiSessionRecovering::TokenValidationDocs,
     ::ApiSessionRecovering::UnprocessableEntity
   ]
 

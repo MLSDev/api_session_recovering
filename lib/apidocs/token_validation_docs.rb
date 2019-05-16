@@ -1,37 +1,33 @@
-class ApiSessionRecovering::RestorePasswordDocs
+class ApiSessionRecovering::TokenValidationDocs
   require 'apidocs/unprocessable_entity'
   include Swagger::Blocks
 
-  swagger_path '/session_recovering/restore_password' do
+  swagger_path '/session_recovering/token_validation' do
     operation :post do
-      key :description, 'restore_password'
-      key :summary, '1st step of password recovering. Generates the code and sends it to user.'
+      key :description, 'Validate restore token'
+      key :summary, 'validate restore token'
       key :tags, ['restore password']
-      key :consumes, ['multipart/form-data']
       security do
         key :api_key, []
       end
       parameter do
-        key :name, 'restore_password[email]'
+        key :name, :token
         key :in, :formData
         key :required, true
         key :type, :string
       end
       parameter do
-        key :name, 'restore_password[frontend_path]'
+        key :name, :email
         key :in, :formData
-        key :required, false
+        key :required, true
         key :type, :string
       end
-
       response '204' do
         key :description, 'Success without body'
       end
-
       response '404' do
         key :description, 'NotFound'
       end
-
       response '422' do
         key :description, 'UnprocessableEntity'
         schema do
