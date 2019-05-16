@@ -5,6 +5,12 @@ class ApiSessionRecovering::UnprocessableEntity
 
   swagger_schema :UnprocessableEntity do
     property :errors do
+      key :'$ref', :Errors
+    end
+  end
+
+  swagger_schema :Errors do
+    property :error_field do
       key :type, :array
       items do
         key :type, :string
