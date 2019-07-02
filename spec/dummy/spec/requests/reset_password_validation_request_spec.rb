@@ -14,13 +14,15 @@ describe 'RESET PASSWORD VALIDATION' do
 
   let!(:restore_password) { create :restore_password, user: user }
 
-  let(:path) { '/api/session_recovering/reset_passwords/validate' }
+  let(:path) { '/api/session_recovering/restore_password/validation' }
 
   context 'valid restore token' do
     let(:params) do
       {
-        "token": restore_password.token,
-        "email": restore_password.email
+        restore_password: {
+          token: restore_password.token,
+          email: restore_password.email
+        }
       }
     end
 
@@ -34,7 +36,9 @@ describe 'RESET PASSWORD VALIDATION' do
   context 'not valid restore token' do
     let(:params) do
       {
-        "token": '12345678'
+        restore_password: {
+          token: '12345678'
+        }
       }
     end
 
