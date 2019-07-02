@@ -1,5 +1,11 @@
 language: ruby
 
+services:
+  - postgresql
+
+addons:
+  postgresql: '9.6'
+
 sudo: false
 cache: bundler
 
