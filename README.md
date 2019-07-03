@@ -51,7 +51,7 @@ It will generate routes like
 ```
 Routes for ApiSessionRecovering::Engine:
   session_recovering_restore_password            POST /session_recovering/restore_password(.:format)
-  session_recovering_reset_password_validation   POST /session_recovering/reset_passwords/validate(.:format)
+  session_recovering_restore_password_validation POST /session_recovering/restore_password/validation(.:format)
   session_recovering_reset_password              POST /session_recovering/reset_password(.:format)
 ```
 
@@ -79,12 +79,14 @@ OR
 }
 ```
 
-- POST /session_recovering/reset_passwords/validate(.:format)
+- POST /session_recovering/restore_password/validation(.:format)
 
 ```json
 {
-  "email": ...,
-  "token": ...
+  "restore_password": {
+    "email": ...,
+    "token": ...
+  }
 }
 ```
 
@@ -122,8 +124,8 @@ it  will add `reset password` and `restore password` documentation
 ### HOWTO (steps)
 
 1. restore password
-2. reset password validation (if needed)
-3. reset password!
+2. restore password validation (if needed)
+3. reset password
 
 ### Have questions/want to know how to configure somethig?
 
