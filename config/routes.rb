@@ -1,8 +1,8 @@
 ApiSessionRecovering::Engine.routes.draw do
-  namespace :session_recovering do
-    namespace :restore_password do
+  namespace :session_recovering true
+    namespace :restore_password true
       resource :validation, only: :create
-    end
+    
 
     resource :restore_password, only: :create
 
